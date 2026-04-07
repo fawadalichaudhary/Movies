@@ -1,8 +1,11 @@
+import { Link, } from "react-router";
 import FallbackImage from "../assets/fallback_image.webp"
+import MovieDetail from "./MovieDetail";
 
 const MovieCard = ({ movie }) => {
+    // const [setsearchParams] = useSearchParams()
     return (
-        <div className="relative bg-blue-950 cursor-pointer w-43">
+        <Link to={`movies/${movie.id}`} className="relative bg-blue-950 cursor-pointer w-43">
             <img
                 src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : FallbackImage}
                 alt={movie.title}
@@ -14,7 +17,8 @@ const MovieCard = ({ movie }) => {
             <span className={`absolute top-2 right-2 px-2 py-1 rounded text-xs font-bold ${movie.vote_average >= 7 ? 'bg-blue-600 text-white' : 'bg-red-500 text-white'}`}>
                 {movie.vote_average}
             </span>
-        </div>
+
+        </Link>
     );
 };
 export default MovieCard
