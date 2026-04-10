@@ -8,17 +8,6 @@ function MovieDetail() {
 
     const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=248bef0b9b0a772b3d5bc1933b433de1`;
 
-    // const fetchMovie = () => {
-    //     try {
-    //         const res = axios.get(URL);
-    //         setMovie(res.data);
-    //         console.log(res.data);
-    //         return res
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
     useEffect(() => {
         axios.get(URL).then((response) => {
             setMovie(response.data);
