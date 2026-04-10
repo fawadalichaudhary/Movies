@@ -8,18 +8,25 @@ function MovieDetail() {
 
     const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=248bef0b9b0a772b3d5bc1933b433de1`;
 
-    useEffect(() => {
-        const fetchMovie = async () => {
-            try {
-                const res = await axios.get(URL);
-                setMovie(res.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+    // const fetchMovie = () => {
+    //     try {
+    //         const res = axios.get(URL);
+    //         setMovie(res.data);
+    //         console.log(res.data);
+    //         return res
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
-        fetchMovie();
-    }, [id]);
+    useEffect(() => {
+        axios.get(URL).then((response) => {
+            setMovie(response.data);
+            console.log(response.data)
+        }).catch((error) => {
+            console.log(`Error fetching: ${error}`)
+        })
+    }, []);
 
     if (!movie) {
         return <div className=" p-5 bg-blue-900 h-screen flex justify-center items-center">Loading...</div>;
