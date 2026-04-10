@@ -19,6 +19,7 @@ const MovieCard = ({ movie }) => {
     useEffect(() => {
         let fav = favItems();
         setisfav(fav.includes(movie.id));
+        console.log("Fetching favourite movie ids on page load: ", fav)
 
     }, [movie.id]);
 
@@ -26,6 +27,7 @@ const MovieCard = ({ movie }) => {
         e.preventDefault();
 
         let fav = favItems();
+        console.log("Fetching favourite movie ids on click: ", fav)
 
         if (fav.includes(movie.id)) {
             fav = fav.filter((id) => id !== movie.id);
