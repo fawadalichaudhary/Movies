@@ -5,7 +5,7 @@ import { buttoncount } from "./context";
 import { useContext, useEffect, useState } from "react";
 
 
-const MovieCard = ({ movie, favItems, setFavItems }) => {
+const MovieCard = ({ movie, favItems = [], setFavItems }) => {
 
     const counter = useContext(buttoncount)
     const [isfav, setisfav] = useState(false);
@@ -15,11 +15,8 @@ const MovieCard = ({ movie, favItems, setFavItems }) => {
     };
 
     useEffect(() => {
-        let fav = favItems();
-        setisfav(fav.includes(movie.id));
-        console.log("Fetching favourite movie ids on page load: ", fav)
-
-    }, [movie.id]);
+        setisfav(favItems.includes(movie.id));
+    }, [movie.id, favItems]);
 
     const handleClick = () => {
         let updateFav;
