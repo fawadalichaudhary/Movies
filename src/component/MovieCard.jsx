@@ -15,10 +15,11 @@ const MovieCard = ({ movie, favItems, setFavItems }) => {
     };
 
     useEffect(() => {
-        if (favItems?.includes(movie.id)) {
-            setisfav(favItems);
-        }
-    }, [movie.id, favItems]);
+        let fav = favItems();
+        setisfav(fav.includes(movie.id));
+        console.log("Fetching favourite movie ids on page load: ", fav)
+
+    }, [movie.id]);
 
     const handleClick = () => {
         let updateFav;
