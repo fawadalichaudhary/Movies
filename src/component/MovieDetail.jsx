@@ -22,7 +22,7 @@ function MovieDetail() {
     }
 
     return (
-        <div className="bg-blue-900 min-h-screen text-white p-5 flex flex-col md:flex-row gap-6">
+        <div className="bg-blue-900 min-h-screen text-white p-5 flex flex-col md:flex-row gap-6" >
 
             {/* Poster */}
             <img
