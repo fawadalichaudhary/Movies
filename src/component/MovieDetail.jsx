@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import axios from "axios";
 
 function MovieDetail() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
-    const navLocation = navigation()
 
     const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=248bef0b9b0a772b3d5bc1933b433de1`;
 
@@ -23,9 +22,7 @@ function MovieDetail() {
     }
 
     return (
-        <div className="bg-blue-900 min-h-screen text-white p-5 flex flex-col md:flex-row gap-6" onClick={() => {
-            navLocation(`fav/movies/${movie.id}`)
-        }}>
+        <div className="bg-blue-900 min-h-screen text-white p-5 flex flex-col md:flex-row gap-6" >
 
             {/* Poster */}
             <img

@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MovieCard from './MovieCard'
-import { buttoncount } from './context';
 
 const MoviesList = ({ data }) => {
     const [favItems, setFavItems] = useState([]);

@@ -32,7 +32,7 @@ const MovieCard = ({ movie, favItems, setFavItems }) => {
             console.log("removing", favItems);
 
         } else {
-            updateFav = [...(favItems || []), movie.id]; // ✅ no mutation
+            updateFav = [...(favItems || []), movie.id];
             setisfav(true);
             console.log("adding", favItems);
 
