@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
 import { Heart } from "lucide-react";
 import MoviesList from "./MoviesList";
 import { buttoncount } from "./context";
+import { useQuery } from "@tanstack/react-query";
 
 const Movie = () => {
   const favItems = () => {
@@ -12,7 +13,6 @@ const Movie = () => {
   };
 
   const navLocation = useNavigate()
-  const [data, setdata] = useState([])
   const [search, setSearch] = useState("");
   const [count, setcount] = useState(favItems().length)
 
@@ -20,32 +20,24 @@ const Movie = () => {
   const searchURL = `https://api.themoviedb.org/3/search/movie?api_key=248bef0b9b0a772b3d5bc1933b433de1&query=${search}`
 
 
-  useEffect(() => {
-    const getdata = async () => {
-      try {
-        const res = await axios.get(discoverURL)
-        setdata(res.data.results)
-        console.log(res.data.results);
+  const getdata = () => {
+    return axios.get(discoverURL).then((res) => {
+      console.log("before", res.data.results)
+      return res.data.results
+    })
+  }
 
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getdata()
-  }, [])
+  const { data } = useQuery({
+    queryKey: ['movies'],
+    queryFn: getdata,
+    staleTime: Infinity,
+  })
+
 
   const searchfunct = async (e) => {
     e.preventDefault()
-
-    try {
-      const res = await axios.get(searchURL)
-      setdata(res.data.results)
-
-    } catch (error) {
-      console.log(error);
-
-    }
-
+    const res = await axios.get(searchURL)
+    return res.data.results
   }
 
   return (
@@ -61,7 +53,7 @@ const Movie = () => {
           </div>
           <MoviesList data={data} />
 
-          <span onClick={() => { navLocation("fav") }} className="fixed bottom-4 right-4 bg-red-500 text-white p-3 rounded-md flex items-center gap-2">
+          <span onClick={() => { navLocation("fav") }} className="fixed cursor-pointer bottom-4 right-4 bg-red-500 text-white p-3 rounded-md flex items-center gap-2">
             <Heart className="h-6 w-6 fill-white" />
             <span className="font-semibold text-lg">{count}</span>
           </span>

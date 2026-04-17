@@ -7,7 +7,6 @@ function FavCard() {
     const [movies, setMovies] = useState([]);
     const data = localStorage.getItem("favorites");
     const ids = data ? JSON.parse(data) : [];
-
     useEffect(() => {
         Promise.all(
             ids.map((id) =>
@@ -24,6 +23,7 @@ function FavCard() {
                 console.error("Failed to fetch movies:", error);
             });
     }, []);
+
 
     if (movies.length === 0)
         return (

@@ -17,7 +17,7 @@ const MoviesList = ({ data }) => {
 
     return (
         <div className="flex gap-3.5 flex-wrap p-5 justify-center">
-            {data.map((movie) => (
+            {data?.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} favItems={favItems} setFavItems={setFavItems} />
             ))}
         </div>
